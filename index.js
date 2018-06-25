@@ -1013,7 +1013,7 @@ Session.prototype.set = function (varbinds, responseCb) {
 					+ "match response OIDs"));
 		} else {
 			for (var i = 0; i < req.message.pdu.varbinds.length; i++) {
-				if (req.message.pdu.varbinds[i].oid != pdu.varbinds[i].oid) {
+				if (!pdu.varbinds[i].oid.startsWith(req.message.pdu.varbinds[i].oid)) {
 					req.responseCb (new ResponseInvalidError ("OID '"
 							+ req.message.pdu.varbinds[i].oid
 							+ "' in request at positiion '" + i + "' does not "
