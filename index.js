@@ -1024,7 +1024,6 @@ Session.prototype.set = function (varbinds, responseCb) {
 					varbinds.push (pdu.varbinds[i]);
 				}
 			}
-
 			req.responseCb (null, varbinds);
 		}
 	}
