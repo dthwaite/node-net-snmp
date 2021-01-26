@@ -314,7 +314,7 @@ function readVarbinds (buffer, varbinds) {
 }
 
 function writeUint (buffer, type, value) {
-	var b = new Buffer (4);
+	var b = Buffer.alloc(4);
 	b.writeUInt32BE (value, 0);
 	buffer.writeBuffer (b, type);
 }
@@ -351,7 +351,7 @@ function writeVarbinds (buffer, varbinds) {
 				if (bytes.length != 4)
 					throw new RequestInvalidError ("Invalid IP address '"
 							+ value + "'");
-				buffer.writeBuffer (new Buffer (bytes), 64);
+				buffer.writeBuffer (Buffer.from(bytes), 64);
 			} else if (type == ObjectType.Counter) { // also Counter32
 				writeUint (buffer, ObjectType.Counter, value);
 			} else if (type == ObjectType.Gauge) { // also Gauge32 & Unsigned32
@@ -474,7 +474,7 @@ TrapPdu.prototype.toBuffer = function (buffer) {
 	buffer.startSequence (this.type);
 
 	buffer.writeOID (this.enterprise);
-	buffer.writeBuffer (new Buffer (this.agentAddr.split (".")),
+	buffer.writeBuffer (Buffer.from(this.agentAddr.split (".")),
 			ObjectType.IpAddress);
 	buffer.writeInt (this.generic);
 	buffer.writeInt (this.specific);
