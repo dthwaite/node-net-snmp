@@ -53,7 +53,7 @@ function pollDeviceDevices (session, device, pollCb) {
 					pollCb (error, null);
 				} else {
 					for (index in table) {
-						var mac = new Buffer (index.split (".")).toString ("hex");
+						var mac = Buffer.from(index.split (".")).toString ("hex");
 						var row = table[index];
 						delete table[index];
 						table[mac] = row;
